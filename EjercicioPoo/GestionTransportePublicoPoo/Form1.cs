@@ -32,11 +32,10 @@ namespace GestionTransportePublicoPoo
         {
             listBox1.Items.Clear();
             var numUpDowns = GetNumUpDowns();
-            //var nombre = 
 
             if (numUpDowns.Count > 0)
             {
-                numUpDowns.Sort((x,y) => x.Name.CompareTo(y.Name));
+                numUpDowns.Sort((x,y) => x.Name.CompareTo(y.Name)); // Ordeno la lista ya que vienen los taxis primeros y por numero descendente
                 foreach (var numUpDown in numUpDowns)
                 {
                     if (numUpDown.Tag.ToString() == "taxi")
