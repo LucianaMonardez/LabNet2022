@@ -14,7 +14,7 @@ namespace EjercicioExtensionsMethods.Extensions
             {
                 int numero2 = 0;
                 var resultado = numero1 / numero2;
-                if (numero1 != 0 || numero2 != 0)
+                if (numero2 != 0)
                 {
                     Console.WriteLine($"El resultado de la division entre {numero1} y {numero2} es: {resultado}");
                 }
@@ -36,7 +36,7 @@ namespace EjercicioExtensionsMethods.Extensions
             try
             {
                 var resultado = numero1 / numero2;
-                if (numero1 != 0 || numero2 != 0)
+                if (numero2 != 0)
                 {
                     Console.WriteLine($"El resultado de la division entre {numero1} y {numero2} es: {resultado}");
                 }
