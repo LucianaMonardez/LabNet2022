@@ -46,7 +46,7 @@
   <ItemGroup>
     <Compile Include="Extensions\CustomException.cs" />
     <Compile Include="Extensions\EjercicioExceptions.cs" />
-    <Compile Include="Logic\ClaseLogic.cs" />
+    <Compile Include="Entitys\ClaseLogic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
