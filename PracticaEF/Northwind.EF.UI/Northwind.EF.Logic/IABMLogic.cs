@@ -10,9 +10,10 @@ namespace Northwind.EF.Logic
     public interface IABMLogic<T>
     {
         List<T> GetAll();
+        T GetById(int id);
         void Add(T U);
         void Delete(int id);
-        void Update(int id);   
+        void Update(T U);   
 
     }
 }

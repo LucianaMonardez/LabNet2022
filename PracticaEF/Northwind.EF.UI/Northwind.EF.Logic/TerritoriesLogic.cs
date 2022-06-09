@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Northwind.EF.Logic.Extensions;
 
 namespace Northwind.EF.Logic
 {
@@ -22,18 +23,38 @@ namespace Northwind.EF.Logic
 
         public void Delete(int id)
         {
-            var territoryAEliminar = _context.Territories.FirstOrDefault(x => Convert.ToInt32(x.TerritoryID) == id );
-            _context.Territories.Remove(territoryAEliminar);
-            _context.SaveChangesAsync();
+            var territoryAEliminar = _context.Territories.FirstOrDefault(x => Convert.ToInt32(x.TerritoryID) == id);
+            if (territoryAEliminar != null)
+            {
+                _context.Territories.Remove(territoryAEliminar);
+                _context.SaveChangesAsync();
+            }
+            else
+            {
+                throw new NoExisteIdException();
+            }
+        }
+        public Territories GetById(int id)
+        {
+            var territory = _context.Territories.FirstOrDefault(x => Convert.ToInt32(x.TerritoryID) == id);
+            if (territory != null)
+            {
+                return territory;
+            }
+            else
+            {
+                throw new NoExisteIdException();
+            }
         }
 
-        public void Update(int id)
+        public Territories Update(Territories U)
         {
-            Territories terrytory = new Territories();
-            var territoryAActualizar = _context.Territories.FirstOrDefault(x => Convert.ToInt32(x.TerritoryID) == id);
-            territoryAActualizar.TerritoryDescription = terrytory.TerritoryDescription;
-            territoryAActualizar.RegionID = terrytory.RegionID;
-            _context.SaveChangesAsync();
+            throw new NotImplementedException();
+        }
+
+        void IABMLogic<Territories>.Update(Territories U)
+        {
+            throw new NotImplementedException();
         }
     }
 }

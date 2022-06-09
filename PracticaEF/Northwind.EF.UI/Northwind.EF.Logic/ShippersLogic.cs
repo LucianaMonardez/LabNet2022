@@ -2,9 +2,11 @@
 using Northwind.EF.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Northwind.EF.Logic.Extensions;
 
 namespace Northwind.EF.Logic
 {
@@ -25,18 +27,43 @@ namespace Northwind.EF.Logic
         public void Delete(int id)
         {
             var shipperAEliminar = _context.Shippers.FirstOrDefault(x => x.ShipperID == id);
-            _context.Shippers.Remove(shipperAEliminar);
-            _context.SaveChangesAsync();
+            if (shipperAEliminar != null)
+            {
+                _context.Shippers.Remove(shipperAEliminar);
+                _context.SaveChangesAsync();
+            }
+            else 
+            {
+                throw new NoExisteIdException();
+            }
         }
 
-        public void Update(int id)
+        public Shippers GetById(int id)
         {
-            Shippers shipper = new Shippers();
-            var shipperAActualizar = _context.Shippers.FirstOrDefault(x => x.ShipperID == id);
-            shipperAActualizar.CompanyName = shipper.CompanyName;
-            shipperAActualizar.Phone = shipper.Phone;
-            _context.SaveChangesAsync();
+            var shipper = _context.Shippers.FirstOrDefault(x => x.ShipperID == id);
+            if (shipper != null)
+            {
+                return shipper;
+            }
+            else 
+            {
+                throw new NoExisteIdException();
+            }
         }
 
+        public void Update(Shippers shipperAModificar)
+        {
+            try
+            {
+                _context.Entry(shipperAModificar).State = EntityState.Modified;
+                _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
+            
+        }
     }
 }

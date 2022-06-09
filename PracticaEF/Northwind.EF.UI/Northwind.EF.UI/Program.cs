@@ -29,16 +29,12 @@ namespace Northwind.EF.UI
                             break;
                         case 2:
                             AgregarShipper();
-
-                            ObtenerShippers();
                             break;
                         case 3:
                             EliminarShipper();
-                            ObtenerShippers();
                             break;
                         case 4:
                             ActualizarShipper();
-                            ObtenerShippers();
                             break;
                         case 5:
                             ObtenerTerritories();
@@ -72,12 +68,12 @@ namespace Northwind.EF.UI
                 {
                     Console.WriteLine($"ID: {shipper.ShipperID}, Nombre de compania: {shipper.CompanyName}, Telefono: {shipper.Phone}");
                 }
-
+                Console.WriteLine("Apreta cualquier tecla para continuar");
                 Console.ReadLine();
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                Console.WriteLine(e.Message);
             }
         }
 
@@ -97,11 +93,12 @@ namespace Northwind.EF.UI
                     CompanyName = companyName,
                     Phone = phone,
                 });
+                Console.WriteLine("Apreta cualquier tecla para continuar");
                 Console.ReadLine();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                Console.WriteLine(e.Message);
             }
         }
 
@@ -115,13 +112,13 @@ namespace Northwind.EF.UI
                 if (id != 0)
                 {
                     shippersLogic.Delete(id);
-                    Console.ReadLine();
+                    ObtenerShippers();
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
-                throw;
+                Console.WriteLine(e.Message);
             }
         }
 
@@ -129,39 +126,39 @@ namespace Northwind.EF.UI
         {
             try
             {
-                Console.WriteLine("\nIngrese el nombre de la compania:");
-                var companyName = Console.ReadLine();
-                if (companyName == null)
-                {
-                    Console.WriteLine("\nIngrese el nombre de la compania:");
-                    companyName = Console.ReadLine();
-                }
-                Console.WriteLine("\nIngrese el numero de telefono de la compania:");
-                var phone = Console.ReadLine();
-                if (phone == null)
-                {
-                    Console.WriteLine("\nIngrese el nombre de la compania:");
-                    phone = Console.ReadLine();
-                }
-
                 ShippersLogic shippersLogic = new ShippersLogic();
 
                 Console.WriteLine("Ingrese el id del shipper a actualizar: ");
                 var id = Convert.ToInt32(Console.ReadLine());
-                /*if (id != 0)
+                var shipper = shippersLogic.GetById(id);
+                if (shipper != null)
                 {
-                    shippersLogic.Update(id)
+                    Console.WriteLine("\nIngrese el nombre de la compania:");
+                    var companyName = Console.ReadLine();
+                    while (string.IsNullOrEmpty(companyName))
                     {
-                        CompanyName = companyName,
-                        Phone = phone,
-                    };
-                    Console.ReadLine();
-                }*/
+                        Console.WriteLine("\nEl nombre de la compañia es obligatorio. Ingrese el nombre de la compania:");
+                        companyName = Console.ReadLine();
+                    }
+                    Console.WriteLine("\nIngrese el numero de telefono de la compania:");
+                    var phone = Console.ReadLine();
+                    if (!string.IsNullOrEmpty(phone))
+                    {
+                        shipper.Phone = phone;
+                    }
+
+                    shipper.CompanyName = companyName;
+                    
+
+                    shippersLogic.Update(shipper);
+
+                    ObtenerShippers();
+                }
             }
             catch (Exception e)
             {
 
-                throw new Exception(e.Message);
+                Console.WriteLine(e.Message);
             }
         }
         static void ObtenerTerritories()
@@ -174,11 +171,12 @@ namespace Northwind.EF.UI
                     Console.WriteLine($"Territorio ID: {territory.TerritoryID}, Region ID: {territory.RegionID}, Descripcion: {territory.TerritoryDescription}");
                 }
 
+                Console.WriteLine("Apreta cualquier tecla para continuar");
                 Console.ReadLine();
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                Console.WriteLine(e.Message);
             }
         }
 
