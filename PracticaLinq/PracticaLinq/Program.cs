@@ -15,55 +15,64 @@ namespace PracticaLinq
             {
                 Menu();
                 Console.WriteLine("Ingrese una opcion:");
-                int opcion = int.Parse(Console.ReadLine());
-                if (opcion < 14)
+                string opcion = Console.ReadLine();
+                if (int.TryParse(opcion, out int choice))
                 {
-                    switch (opcion)
+                    if (choice < 14)
                     {
-                        case 1:
-                            GetCustomerById();
-                            break;
-                        case 2:
-                            GetProductsWihoutStock();
-                            break;
-                        case 3:
-                            GetProductsWithStockAndPriceHigherThan3();
-                            break;
-                        case 4:
-                            GetAllCustomersWithWaRegion();
-                            break;
-                        case 5:
-                            GetById789();
-                            break;
-                        case 6:
-                            GetAllCustomersName();
-                            break;
-                        case 7:
-                            GetAllCustomersFromRegionWaAndOrderDateHigherThan1997();
-                            break;
-                        case 8:
-                            GetFirst3Customers();
-                            break;
-                        case 9:
-                            GetAllProductsOrderedByName();
-                            break;
-                        case 10:
-                            GetAllProductsOrderedByUnitInStockDesc();
-                            break;
-                        case 11:
-                            GetFirstProduct();
-                            break;
-                        case 12:
-                            GetCustomersQuantityOrders();
-                            break;
-                        case 13:
-                            GetProductCategorys();
-                            break;
+                        switch (choice)
+                        {
+                            case 1:
+                                GetCustomerById();
+                                break;
+                            case 2:
+                                GetProductsWihoutStock();
+                                break;
+                            case 3:
+                                GetProductsWithStockAndPriceHigherThan3();
+                                break;
+                            case 4:
+                                GetAllCustomersWithWaRegion();
+                                break;
+                            case 5:
+                                GetById789();
+                                break;
+                            case 6:
+                                GetAllCustomersName();
+                                break;
+                            case 7:
+                                GetAllCustomersFromRegionWaAndOrderDateHigherThan1997();
+                                break;
+                            case 8:
+                                GetFirst3Customers();
+                                break;
+                            case 9:
+                                GetAllProductsOrderedByName();
+                                break;
+                            case 10:
+                                GetAllProductsOrderedByUnitInStockDesc();
+                                break;
+                            case 11:
+                                GetFirstProduct();
+                                break;
+                            case 12:
+                                GetCustomersQuantityOrders();
+                                break;
+                            case 13:
+                                GetProductCategorys();
+                                break;
+                        }
+                    }
+
+                    else
+                    {
+                        Environment.Exit(0);
+                        Console.Write("Apreta cualquier tecla para salir");
                     }
                 }
                 else
                 {
-                    Console.Write("Ingrese un valor valido");
+                    Console.Write("\nIngrese un valor valido");
                 }
             }
         }
