@@ -66,6 +66,10 @@
       <Project>{F7B01E7F-5FEA-4B36-8D94-3CA55B08DEB0}</Project>
       <Name>PracticaLinq.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PracticaLinq.Entities\PracticaLinq.Entities.csproj">
+      <Project>{CAD76934-BF4F-4042-889E-DB9C803E1A80}</Project>
+      <Name>PracticaLinq.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

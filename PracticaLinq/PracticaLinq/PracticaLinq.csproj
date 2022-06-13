@@ -57,5 +57,15 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PracticaLinq.Entities\PracticaLinq.Entities.csproj">
+      <Project>{CAD76934-BF4F-4042-889E-DB9C803E1A80}</Project>
+      <Name>PracticaLinq.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PracticaLinq.Logic\PracticaLinq.Logic.csproj">
+      <Project>{C21CAE01-2429-4880-8AD0-DBCD312F4964}</Project>
+      <Name>PracticaLinq.Logic</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
