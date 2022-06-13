@@ -1,4 +1,5 @@
 ﻿using PracticaLinq.Entities;
+using PracticaLinq.Logic.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,16 +27,32 @@ namespace PracticaLinq.Logic
 
         public List<Product> GetAllWithoutStock()
         {
-            return (from product in _context.Products 
+            var result = (from product in _context.Products 
                     where product.UnitsInStock == 0
                     select product).ToList();
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            {
+                throw new NoExistenDatosParaMostrarException();
+            }
         }
         public List<Product> GetAllProductsInStockWithPriceHigherThan3()
         {
-            return (from product in _context.Products
+            var result = (from product in _context.Products
                     where product.UnitsInStock != 0
                     && product.UnitPrice > 3 
                     select product).ToList();
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            {
+                throw new NoExistenDatosParaMostrarException();
+            }
         }
 
         public Product GetById(int id)
@@ -44,26 +61,66 @@ namespace PracticaLinq.Logic
         }
         public Product GetById789()
         {
-            return (from product in _context.Products
+            var result = (from product in _context.Products
                     where product.ProductID == 789
                     select product).FirstOrDefault();
+            if (result != null)
+            {
+                return result;
+            }
+            else 
+            {
+                throw new NoExisteIdException();
+            }
         }
 
         public List<Product> GetAllProductsOrderedByName()
         {
-            return _context.Products.OrderBy(x => x.ProductName).ToList();
+            var result = _context.Products.OrderBy(x => x.ProductName).ToList();
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            {
+                throw new NoExistenDatosParaMostrarException();
+            }
         }
         public List<Product> GetAllProductsOrderedByUnitInStockDesc()
         {
-            return _context.Products.OrderByDescending(x => x.UnitsInStock).ToList();
+            var result = _context.Products.OrderByDescending(x => x.UnitsInStock).ToList();
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            {
+                throw new NoExistenDatosParaMostrarException();
+            }
         }
         public List<string> GetProductCategorys()
         {
-            return _context.Products.Join(_context.Categories, product => product.CategoryID, category =>  category.CategoryID, (product, category) => category.CategoryName).ToList();
+            var result = _context.Products.Join(_context.Categories, product => product.CategoryID, category =>  category.CategoryID, (product, category) => category.CategoryName).ToList();
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            {
+                throw new NoExistenDatosParaMostrarException();
+            }
         }
         public Product GetFirstProduct()
         {
-            return _context.Products.FirstOrDefault();
+            var result = _context.Products.FirstOrDefault();
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            {
+                throw new NoExistenDatosParaMostrarException();
+            }
         }
 
         public void Update(Product U)

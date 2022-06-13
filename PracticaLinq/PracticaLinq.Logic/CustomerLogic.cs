@@ -1,4 +1,5 @@
 ﻿using PracticaLinq.Entities;
+using PracticaLinq.Logic.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,10 +32,17 @@ namespace PracticaLinq.Logic
 
         public Customer GetById(string id)
         {
-            var result = (from customer in _context.Customers 
-                         where customer.CustomerID == id.ToString() 
-                         select customer).FirstOrDefault();
-            return result;
+                var result = (from customer in _context.Customers
+                              where customer.CustomerID == id.ToString()
+                              select customer).FirstOrDefault();
+                if (result != null)
+                {
+                    return result;
+                }
+                else
+                {
+                    throw new NoExisteIdException();
+                }
         }
         public List<string> GetAllCustomersName()
         {
@@ -46,26 +54,49 @@ namespace PracticaLinq.Logic
 
             customerName.AddRange(namesUpper);
             customerName.AddRange(namesLower);
+            if (customerName != null)
+            {
+                return customerName;
+            }
+            else
+            {
+                throw new NoExistenDatosParaMostrarException();
+            }
 
-
-            return customerName;
+            
         }
 
         public List<Customer> GetAllCustomersFromRegionWaAndOrderDateHigherThan1997()
         {
 
-            return (from customer in _context.Customers
+            var result = (from customer in _context.Customers
                     join order in _context.Orders
                     on customer.CustomerID equals order.CustomerID
                     where customer.Region == "WA"
                     && order.OrderDate > new DateTime(1997,1,1)
                     select customer).ToList();
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            {
+                throw new NoExistenDatosParaMostrarException();
+            }
         }
 
         public List<Customer> GetFirst3CustomersWhereRegionWA()
         {
 
-            return _context.Customers.Where(x => x.Region == "WA").Take(3).ToList();
+            var result =  _context.Customers.Where(x => x.Region == "WA").Take(3).ToList();
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            {
+                throw new NoExistenDatosParaMostrarException();
+            }
         }
         public List<string> GetCustomersQuantityOrders()
         {
@@ -74,13 +105,19 @@ namespace PracticaLinq.Logic
 
             var stringList = new List<string>();
 
-            foreach (var customer in customers)
+            if (customers != null)
             {
-                stringList.Add($"Customer Name: {customer.CustomerName}, Order Count: {customer.OrderCount}");
+                foreach (var customer in customers)
+                {
+                    stringList.Add($"Customer Name: {customer.CustomerName}, Order Count: {customer.OrderCount}");
+                }
+
+                return stringList;
             }
-
-            return stringList;
-
+            else
+            {
+                throw new NoExistenDatosParaMostrarException();
+            }
         }
 
         public void Update(Customer U)
