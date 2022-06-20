@@ -10,8 +10,8 @@
         <th scope="col">Id Shipper</th>
         <th scope="col">Company Name</th>
         <th scope="col">Shipper Phone</th>
-        <th scope="col">Action</th>
-        <th scope="col">Action</th>
+        <th scope="col">Actualizar</th>
+        <th scope="col">Eliminar</th>
     </tr>
 
     @foreach (var shipper in Model)
@@ -20,12 +20,12 @@
             <th scope="row">@shipper.Id</th>
             <th scope="row">@shipper.CompanyName</th>
             <th scope="row">@shipper.Phone</th>
-            <th scope="row">@Html.ActionLink("Eliminar", "Delete", new { id = shipper.Id }, new { onclick = "return confirm('El Shipper se eliminara. Estas seguro de continuar?') " })</th>
-            <th scope="row">@Html.ActionLink("Actualizar", "Update", "Shippers", new { id = shipper.Id }, null)</th>
+            <th scope="row"><button class="btn btn-success">@Html.ActionLink("Actualizar", "Update", "Shippers", new { id = shipper.Id, @style = "color: white" }, null)</button></th>
+            <th scope="row"><button class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = shipper.Id }, new { onclick = "return confirm('El Shipper se eliminara. Estas seguro de continuar?') ", @style = "color: white" })</button></th>
         </tr>
     }
 </table>
 
 <div>
-    @Html.ActionLink("Insertar un nuevo Shipper", "Insert", "Shippers")
+    <button class="btn btn-primary btn-lg" >@Html.ActionLink("Insertar un nuevo Shipper", "Insert", "Shippers", new { @style = "color: white"})</button>
 </div>

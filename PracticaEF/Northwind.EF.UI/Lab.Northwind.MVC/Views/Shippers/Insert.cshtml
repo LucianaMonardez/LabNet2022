@@ -5,9 +5,49 @@
 
 <h1>Insertar un Shipper</h1>
 
-@using (Html.BeginForm("Insert", "Shippers", FormMethod.Post))
+@using (Html.BeginForm("Insert", "Shippers", FormMethod.Post, new { @id = "registerFormId" }))
 {
-    <label>Company name: </label> @Html.TextBoxFor(x => x.CompanyName)
+    <div>
+        <label>Company name: </label> @Html.TextBoxFor(x => x.CompanyName, new { @id = "companyName", @class = "companyName", @required = "required" })
+        <br>
+        @Html.ValidationMessageFor(x => x.CompanyName, null, new { @style = "color: red" })
+    </div>
     <label>Phone: </label> @Html.TextBoxFor(x => x.Phone)
-    <input type="submit" class="btn btn-primary" value="Guardar" />
+    <input type="submit" class="btn btn-primary" value="Guardar" id="guardar" />
 }
+@section scripts{
+    <script>
+        var maxLength = 40;
+        $("#guardar").click(function () {
+            if (validarCompanyName() == true) {
+                alert("Shipper creado exitosamente!");
+                return true;
+            }
+            return false;
+        });
+
+        function validarCompanyName() {
+            if ($("#companyName").val() == "" || $("#companyName").val() == undefined) {
+                alert("El campo company name no puede estar vacio");
+                $("#companyName").css({ 'outline': 'none', 'border': '1px solid red' });
+                $("#companyName").focus();
+                return false;
+            }
+            else
+            {
+                var value = $("#companyName").val().length;
+                console.log("valor", value)
+                if (value > maxLength) {
+                    $("#companyName").css({ 'outline': 'none', 'border': '1px solid red' });
+                    $("#companyName").focus();
+                    return false;
+                }
+                else
+                {
+                    $("#companyName").css({ 'outline': 'none', 'border': '1px solid black' });
+                    return true;
+                }
+            }
+        };
+    </script>
+    }

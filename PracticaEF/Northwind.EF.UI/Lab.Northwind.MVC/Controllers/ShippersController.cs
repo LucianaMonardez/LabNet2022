@@ -37,6 +37,10 @@ namespace Lab.Northwind.MVC.Controllers
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return View(shippersView);
+                }
                 var shipperEntity = new Shippers { CompanyName = shippersView.CompanyName, Phone = shippersView.Phone, ShipperID = shippersView.Id };
                 logic.Add(shipperEntity);
 

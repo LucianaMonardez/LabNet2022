@@ -7,7 +7,64 @@
 <h1>Actualizar Shipper</h1>
 @using (Html.BeginForm("Update", "Shippers", FormMethod.Post))
 {
-    <label>Company name: </label> @Html.TextBoxFor(x => x.CompanyName, new { @Value = Model.CompanyName })
-    <label>Phone: </label> @Html.TextBoxFor(x => x.Phone, new { @Value = Model.Phone })
-    <input type="submit" class="btn btn-primary" value="Guardar" />
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                <label>Company name: </label> @Html.TextBoxFor(x => x.CompanyName, new { @Value = Model.CompanyName, @id = "companyName", @class = "companyName" })
+                <br>
+                @Html.ValidationMessageFor(x => x.CompanyName, null, new { @style = "color: red" })
+            </div>
+            <div>
+                <label>Phone: </label> @Html.TextBoxFor(x => x.Phone, new { @Value = Model.Phone, @id = "phone", @class = "phone" })
+            </div>
+            <input type="submit" class="btn btn-primary" value="Guardar" id="guardar" />
+        </div>
+    </div>
 }
+
+@section scripts{
+    <script>
+        var maxLength = 40;
+        $("#guardar").click(function () {
+            if (validarCompanyName() == true && validarTelefono() == true) {
+                alert("Shipper modificado exitosamente!");
+                return true;
+            }
+            return false;
+        });
+
+        function validarCompanyName() {
+            if ($("#companyName").val() == "" || $("#companyName").val() == undefined) {
+                alert("El campo company name no puede estar vacio");
+                $("#companyName").css({ 'outline': 'none', 'border': '1px solid red' });
+                $("#companyName").focus();
+                return false;
+            }
+            else {
+                var value = $("#companyName").val().length;
+                console.log("valor", value)
+                if (value > maxLength) {
+                    $("#companyName").css({ 'outline': 'none', 'border': '1px solid red' });
+                    $("#companyName").focus();
+                    return false;
+                }
+                else {
+                    $("#companyName").css({ 'outline': 'none', 'border': '1px solid black' });
+                    return true;
+                }
+            }
+        };
+
+        function validarTelefono() {
+            if ($("#phone").val() == "" || $("#phone").val() == undefined) {
+                alert("El campo phone no puede estar vacio");
+                $("#phone").css({ 'outline': 'none', 'border': '1px solid red' });
+                $("#phone").focus();
+                return false;
+            }
+            $("#phone").css({ 'outline': 'none', 'border': '1px solid black' });
+            return true;
+        };
+    </script>
+}
+
