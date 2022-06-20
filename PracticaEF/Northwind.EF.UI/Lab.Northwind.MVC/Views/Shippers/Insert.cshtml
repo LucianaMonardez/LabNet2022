@@ -12,14 +12,19 @@
         <br>
         @Html.ValidationMessageFor(x => x.CompanyName, null, new { @style = "color: red" })
     </div>
+    <div>
     <label>Phone: </label> @Html.TextBoxFor(x => x.Phone)
+    <br>
+    @Html.ValidationMessageFor(x => x.Phone, null, new { @style = "color: red" })
+    </div>
     <input type="submit" class="btn btn-primary" value="Guardar" id="guardar" />
 }
 @section scripts{
     <script>
         var maxLength = 40;
+        var maxLengthPhone = 24;
         $("#guardar").click(function () {
-            if (validarCompanyName() == true) {
+            if (validarCompanyName() == true && validarTelefono() == true) {
                 alert("Shipper creado exitosamente!");
                 return true;
             }
@@ -33,21 +38,29 @@
                 $("#companyName").focus();
                 return false;
             }
-            else
-            {
+            else {
                 var value = $("#companyName").val().length;
-                console.log("valor", value)
                 if (value > maxLength) {
                     $("#companyName").css({ 'outline': 'none', 'border': '1px solid red' });
                     $("#companyName").focus();
                     return false;
                 }
-                else
-                {
+                else {
                     $("#companyName").css({ 'outline': 'none', 'border': '1px solid black' });
                     return true;
                 }
             }
         };
+        function validarTelefono()
+        {
+            var value = $("#phone").val().length;
+            if (value > maxLengthPhone)
+            {
+                $("#phone").css({ 'outline': 'none', 'border': '1px solid red' });
+                return false;
+            }
+            $("#phone").css({ 'outline': 'none', 'border': '1px solid black' });
+            return true;
+        }
     </script>
-    }
+}

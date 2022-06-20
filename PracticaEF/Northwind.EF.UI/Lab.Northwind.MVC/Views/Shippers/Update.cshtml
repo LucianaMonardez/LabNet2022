@@ -25,6 +25,7 @@
 @section scripts{
     <script>
         var maxLength = 40;
+        var maxLengthPhone = 24;
         $("#guardar").click(function () {
             if (validarCompanyName() == true && validarTelefono() == true) {
                 alert("Shipper modificado exitosamente!");
@@ -44,6 +45,7 @@
                 var value = $("#companyName").val().length;
                 console.log("valor", value)
                 if (value > maxLength) {
+                    alert("El campo company name debe tener menos de 40 caracteres");
                     $("#companyName").css({ 'outline': 'none', 'border': '1px solid red' });
                     $("#companyName").focus();
                     return false;
@@ -56,15 +58,15 @@
         };
 
         function validarTelefono() {
-            if ($("#phone").val() == "" || $("#phone").val() == undefined) {
-                alert("El campo phone no puede estar vacio");
+            var value = $("#phone").val().length;
+            if (value > maxLengthPhone) {
+                alert("El campo phone debe tener menos de 24 caracteres");
                 $("#phone").css({ 'outline': 'none', 'border': '1px solid red' });
-                $("#phone").focus();
                 return false;
             }
             $("#phone").css({ 'outline': 'none', 'border': '1px solid black' });
             return true;
-        };
+        }
     </script>
 }
 
