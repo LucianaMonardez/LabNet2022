@@ -54,12 +54,13 @@ namespace Lab.Northwind.MVC.Controllers
             logic.Delete(id);
             return RedirectToAction("Index");
         }
-        public ActionResult Update()
+        public ActionResult Update(int id)
         {
-            return View();
+            var shipper = logic.GetById(id);
+            return View(new ShipperView { Id = shipper.ShipperID, CompanyName = shipper.CompanyName, Phone = shipper.Phone});
         }
 
-        [HttpPut]
+        [HttpPost]
         public ActionResult Update(ShipperView shippersView)
         {
             try

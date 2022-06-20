@@ -7,7 +7,7 @@
 <h1>Actualizar Shipper</h1>
 @using (Html.BeginForm("Update", "Shippers", FormMethod.Post))
 {
-    <label>Company name: </label> @Html.TextBoxFor(x => x.CompanyName)
-    <label>Phone: </label> @Html.TextBoxFor(x => x.Phone)
+    <label>Company name: </label> @Html.TextBoxFor(x => x.CompanyName, new { @Value = Model.CompanyName })
+    <label>Phone: </label> @Html.TextBoxFor(x => x.Phone, new { @Value = Model.Phone })
     <input type="submit" class="btn btn-primary" value="Guardar" />
 }

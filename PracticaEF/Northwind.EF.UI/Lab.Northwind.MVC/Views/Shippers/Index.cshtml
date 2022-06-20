@@ -21,7 +21,7 @@
             <th scope="row">@shipper.CompanyName</th>
             <th scope="row">@shipper.Phone</th>
             <th scope="row">@Html.ActionLink("Eliminar", "Delete", new { id = shipper.Id }, new { onclick = "return confirm('El Shipper se eliminara. Estas seguro de continuar?') " })</th>
-            <th scope="row">@Html.ActionLink("Actualizar", "Update", "Shippers")</th>
+            <th scope="row">@Html.ActionLink("Actualizar", "Update", "Shippers", new { id = shipper.Id }, null)</th>
         </tr>
     }
 </table>
