@@ -1,0 +1,31 @@
+﻿@model List<Lab.Northwind.MVC.Models.ShipperView>
+
+@{
+    ViewBag.Title = "Shipper Page";
+}
+<h1> Hola</h1>
+
+<table class="table">
+    <tr>
+        <th scope="col">Id Shipper</th>
+        <th scope="col">Company Name</th>
+        <th scope="col">Shipper Phone</th>
+        <th scope="col">Action</th>
+        <th scope="col">Action</th>
+    </tr>
+
+    @foreach (var shipper in Model)
+    {
+        <tr>
+            <th scope="row">@shipper.Id</th>
+            <th scope="row">@shipper.CompanyName</th>
+            <th scope="row">@shipper.Phone</th>
+            <th scope="row">@Html.ActionLink("Eliminar", "Delete", new { id = shipper.Id }, new { onclick = "return confirm('El Shipper se eliminara. Estas seguro de continuar?') " })</th>
+            <th scope="row">@Html.ActionLink("Actualizar", "Update", "Shippers")</th>
+        </tr>
+    }
+</table>
+
+<div>
+    @Html.ActionLink("Insertar un nuevo Shipper", "Insert", "Shippers")
+</div>

@@ -1,0 +1,13 @@
+﻿@model Lab.Northwind.MVC.Models.ShipperView
+@{
+    ViewBag.Title = "Shipper Page";
+}
+
+<h1>Insertar un Shipper</h1>
+
+@using (Html.BeginForm("Insert", "Shippers", FormMethod.Post))
+{
+    <label>Company name: </label> @Html.TextBoxFor(x => x.CompanyName)
+    <label>Phone: </label> @Html.TextBoxFor(x => x.Phone)
+    <input type="submit" class="btn btn-primary" value="Guardar" />
+}

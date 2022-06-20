@@ -13,44 +13,48 @@ namespace Northwind.EF.UI
     {
         static void Main(string[] args)
         {
-            int opcion;
-            try
+            while (true)
             {
-                do
+                Menu();
+                Console.WriteLine("Ingrese una opcion:");
+                string opcion = Console.ReadLine();
+                if (int.TryParse(opcion, out int choice))
                 {
-                    Menu();
-                    Console.WriteLine("Ingrese una opcion:");
-                    opcion = int.Parse(Console.ReadLine());
-
-                    switch (opcion)
+                    if (choice < 5)
                     {
-                        case 1:
-                            ObtenerShippers();
-                            break;
-                        case 2:
-                            AgregarShipper();
-                            break;
-                        case 3:
-                            EliminarShipper();
-                            break;
-                        case 4:
-                            ActualizarShipper();
-                            break;
-                        case 5:
-                            ObtenerTerritories();
-                            break;
+                        switch (choice)
+                        {
+                            case 1:
+                                ObtenerShippers();
+                                break;
+                            case 2:
+                                AgregarShipper();
+                                break;
+                            case 3:
+                                EliminarShipper();
+                                break;
+                            case 4:
+                                ActualizarShipper();
+                                break;
+                            case 5:
+                                ObtenerTerritories();
+                                break;
+
+                        }
+                        }
+                    else
+                    {
+                        Environment.Exit(0);
+                        Console.Write("Apreta cualquier tecla para salir");
                     }
-                } while (opcion != 6);
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("\nSolo se permiten carcteres numericos. El programa se cerrara, por favor apreta una tecla.");
-                Console.ReadKey();
-            }
-            
-            Console.ReadLine();
+                    }
+                else
+                {
+                    Console.Write("\nIngrese un valor valido");
+                }
+                }
         }
-        static void Menu()
+        protected static void Menu()
         {
             Console.WriteLine("\n1- Obtener todos los shippers");
             Console.WriteLine("2- Agregar shipper");
@@ -59,7 +63,7 @@ namespace Northwind.EF.UI
             Console.WriteLine("5- Obtener todos los terrritories");
             Console.WriteLine("6- Salir\n");
         }
-        static void ObtenerShippers() 
+        protected static void ObtenerShippers() 
         {
             try
             {
@@ -77,7 +81,7 @@ namespace Northwind.EF.UI
             }
         }
 
-        static void AgregarShipper() 
+        protected static void AgregarShipper() 
         {
             try
             {
@@ -102,7 +106,7 @@ namespace Northwind.EF.UI
             }
         }
 
-        static void EliminarShipper()
+        protected static void EliminarShipper()
         {
             try
             {
@@ -122,7 +126,7 @@ namespace Northwind.EF.UI
             }
         }
 
-        static void ActualizarShipper()
+        protected static void ActualizarShipper()
         {
             try
             {
@@ -161,7 +165,7 @@ namespace Northwind.EF.UI
                 Console.WriteLine(e.Message);
             }
         }
-        static void ObtenerTerritories()
+        protected static void ObtenerTerritories()
         {
             try
             {

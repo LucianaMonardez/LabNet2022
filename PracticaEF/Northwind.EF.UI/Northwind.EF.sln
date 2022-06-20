@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.EF.Entities", "No
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.EF.LogicTests", "Northwind.EF.LogicTests\Northwind.EF.LogicTests.csproj", "{827C42EE-4559-4B73-B3C4-C4366FE29365}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab.Northwind.MVC", "Lab.Northwind.MVC\Lab.Northwind.MVC.csproj", "{875DD84D-B421-4FEB-85A8-118B02F0A12C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{827C42EE-4559-4B73-B3C4-C4366FE29365}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{827C42EE-4559-4B73-B3C4-C4366FE29365}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{827C42EE-4559-4B73-B3C4-C4366FE29365}.Release|Any CPU.Build.0 = Release|Any CPU
+		{875DD84D-B421-4FEB-85A8-118B02F0A12C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{875DD84D-B421-4FEB-85A8-118B02F0A12C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{875DD84D-B421-4FEB-85A8-118B02F0A12C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{875DD84D-B421-4FEB-85A8-118B02F0A12C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
