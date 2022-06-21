@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.EF.LogicTests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab.Northwind.MVC", "Lab.Northwind.MVC\Lab.Northwind.MVC.csproj", "{875DD84D-B421-4FEB-85A8-118B02F0A12C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab.Northwind.Web.Api", "Lab.Northwind.Web.Api\Lab.Northwind.Web.Api.csproj", "{EA08AFF1-F0A4-4721-A831-D3EF3BB8B2D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab.Northwind.Service", "Lab.Northwind.Service\Lab.Northwind.Service.csproj", "{DB156321-EFC5-4F28-ABB8-CA8231879442}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,11 +49,20 @@ Global
 		{875DD84D-B421-4FEB-85A8-118B02F0A12C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{875DD84D-B421-4FEB-85A8-118B02F0A12C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{875DD84D-B421-4FEB-85A8-118B02F0A12C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA08AFF1-F0A4-4721-A831-D3EF3BB8B2D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA08AFF1-F0A4-4721-A831-D3EF3BB8B2D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA08AFF1-F0A4-4721-A831-D3EF3BB8B2D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA08AFF1-F0A4-4721-A831-D3EF3BB8B2D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB156321-EFC5-4F28-ABB8-CA8231879442}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB156321-EFC5-4F28-ABB8-CA8231879442}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB156321-EFC5-4F28-ABB8-CA8231879442}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB156321-EFC5-4F28-ABB8-CA8231879442}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35
 		SolutionGuid = {0E483CC9-41E4-41DD-AF62-4B4C0292F9A2}
 	EndGlobalSection
 EndGlobal
