@@ -80,5 +80,29 @@ namespace Lab.Northwind.MVC.Controllers
                 return RedirectToAction("Index", "Error");
             }
         }
+        public ActionResult UpdateAndDeleteShipper(string response, int id)
+        {
+            try
+            {
+                if (response == "Editar")
+                {
+                    ShipperView shippersView = new ShipperView();
+                    var shipperEntity = new Shippers { CompanyName = shippersView.CompanyName, Phone = shippersView.Phone, ShipperID = shippersView.Id };
+                    logic.Update(shipperEntity);
+
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    logic.Delete(id);
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception)
+            {
+
+                return RedirectToAction("Index", "Error");
+            }
+        }
     }
 }

@@ -1,0 +1,27 @@
+﻿@model Lab.Northwind.MVC.Models.ShipperView
+
+@{
+    ViewBag.Title = "Shipper Page";
+}
+
+<div>
+    <h1>Actualizar datos</h1>
+    <h1>@Model.Id</h1>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                <label>Company name: </label> @Html.TextBoxFor(x => x.CompanyName, new { @Value = Model.CompanyName, @id = "companyName", @class = "companyName" })
+                <br>
+                @Html.ValidationMessageFor(x => x.CompanyName, null, new { @style = "color: red" })
+            </div>
+            <div>
+                <label>Phone: </label> @Html.TextBoxFor(x => x.Phone, new { @Value = Model.Phone, @id = "phone", @class = "phone" })
+            </div>
+            <input type="submit" class="btn btn-primary" value="Actualizar" id="guardar" />
+            <button class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = Model.Id }, new { onclick = "return confirm('El Shipper se eliminara. Estas seguro de continuar?') ", @style = "color: white" })</button>
+        </div>
+    </div>
+</div>
+
+   

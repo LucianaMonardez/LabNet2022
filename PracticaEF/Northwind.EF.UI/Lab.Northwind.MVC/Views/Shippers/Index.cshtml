@@ -12,6 +12,7 @@
         <th scope="col">Shipper Phone</th>
         <th scope="col">Actualizar</th>
         <th scope="col">Eliminar</th>
+        <th scope="col">Actualizar y eliminar</th>
     </tr>
 
     @foreach (var shipper in Model)
@@ -22,6 +23,7 @@
             <th scope="row">@shipper.Phone</th>
             <th scope="row"><button class="btn btn-success">@Html.ActionLink("Actualizar", "Update", "Shippers", new { id = shipper.Id, @style = "color: white" }, null)</button></th>
             <th scope="row"><button class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = shipper.Id }, new { onclick = "return confirm('El Shipper se eliminara. Estas seguro de continuar?') ", @style = "color: white" })</button></th>
+            <th scope="row"><button class="btn btn-primary">@Html.ActionLink("Acciones", "UpdateAndDeleteShipper", "Shippers", new { id = shipper.Id })</button></th>
         </tr>
     }
 </table>
