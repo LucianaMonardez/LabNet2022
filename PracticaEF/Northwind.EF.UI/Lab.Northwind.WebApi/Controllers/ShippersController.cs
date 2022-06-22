@@ -17,16 +17,9 @@ namespace Lab.Northwind.WebApi.Controllers
         public IHttpActionResult GetAll()
         {
             List<Shippers> shippers = shippersLogic.GetAll();
-            List<ShippersViewModel> shippersViewModel = shippers.Select(x => new ShippersViewModel
+            if (shippers.Count != 0)
             {
-                Id = x.ShipperID,
-                CompanyName = x.CompanyName,
-                Phone = x.Phone,
-
-            }).ToList();
-            if (shippersViewModel.Count != 0)
-            {
-                return Ok(shippersViewModel);
+                return Ok(shippers);
             }
             else
             {
@@ -74,6 +67,7 @@ namespace Lab.Northwind.WebApi.Controllers
             {
                 Shippers shipper = new Shippers()
                 {
+                    ShipperID  = shippersViewModel.Id,
                     CompanyName = shippersViewModel.CompanyName,
                     Phone = shippersViewModel.Phone,
                 };
@@ -89,12 +83,13 @@ namespace Lab.Northwind.WebApi.Controllers
         // DELETE: api/Shippers/5
         public IHttpActionResult Delete(int id)
         {
+
             if (id == 0)
             {
                 return BadRequest("El id ingresado no es valido");
             }
+            shippersLogic.Delete(id);
             return Ok("El shipper fue eliminado exitosamente");
-
         }
     }
 }

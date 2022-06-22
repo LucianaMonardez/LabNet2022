@@ -1,0 +1,14 @@
+﻿@model Lab.Northwind.MVC.Models.Pokemon
+
+@{
+    ViewBag.Title = "Pokemon Page";
+}
+<h1>Pokemon</h1>
+<h2>@Model.Name</h2>
+<div class="pokemon">
+    <p>Numero en pokedex: @Model.Id</p>
+    <p>Peso: @Model.Weight </p>
+    <p>Altura: @Model.Height</p>
+    <p>Tipos: @Model.Types</p>
+
+</div>
