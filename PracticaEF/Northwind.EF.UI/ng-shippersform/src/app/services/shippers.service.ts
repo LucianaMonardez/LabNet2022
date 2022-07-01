@@ -23,13 +23,13 @@ export class ShippersService {
     return this.http.get<Array<Shipper>>(url);
   }
 
-  public updateShipper(shippersRequest: Shipper): Observable<Shipper> {
-    let url = environment.apiShippers + this.endpoint;
-    return this.http.put<Shipper>(url, shippersRequest + '/' + shippersRequest.ShipperID);
+  public updateShipper(shippersRequest: Shipper): Observable<any> {
+    let url = environment.apiShippers + this.endpoint + '/' + shippersRequest.ShipperID;
+    return this.http.put(url, shippersRequest);
   }
 
-  public deleteShipper(shippersRequest: Shipper): Observable<Shipper> {
-    let url = environment.apiShippers + this.endpoint;
-    return this.http.delete<Shipper>(url + '/' + shippersRequest.ShipperID);
+  public deleteShipper(id: Number): Observable<Shipper> {
+    let url = environment.apiShippers + this.endpoint + '/' + id;
+    return this.http.delete<Shipper>(url);
   }
 }

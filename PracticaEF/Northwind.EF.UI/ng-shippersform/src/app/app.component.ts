@@ -27,13 +27,17 @@ export class AppComponent {
   openDialog() {
     this.dialog.open(DialogComponent, {
       width: '30%'
+    }).afterClosed().subscribe(val => {
+      if (val === 'save')
+        this.obtenerShippers();
     })
   }
-  openEditDialog(ShipperID: any) {
+  openEditDialog(shipper: Shipper) {
+    console.log(shipper);
     this.dialog.open(UpdateShippersFormComponent, {
       width: '30%'
     }).afterClosed().subscribe(val => {
-      if (val === 'save')
+      if (val === 'update')
         this.obtenerShippers();
     })
   }
@@ -50,7 +54,8 @@ export class AppComponent {
   deleteShipper(ShipperID) {
     this.shipperService.deleteShipper(ShipperID).subscribe({
       next: (res) => {
-        alert("Producto creado exitosamente")
+        alert("Shipper eliminado exitosamente");
+        this.obtenerShippers();
       },
       error: () => {
         alert("Error al intentar eliminar los productos");

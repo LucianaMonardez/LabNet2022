@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Shipper } from 'src/app/models/shippers';
 import { ShippersService } from 'src/app/services/shippers.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-update-shippers-form',
@@ -11,7 +12,7 @@ import { ShippersService } from 'src/app/services/shippers.service';
 export class UpdateShippersFormComponent implements OnInit {
 
   public formShipper = new FormGroup({})
-  constructor(private shipperService: ShippersService, private formBuilder: FormBuilder) { }
+  constructor(private shipperService: ShippersService, private formBuilder: FormBuilder, public dialogRef: MatDialogRef<UpdateShippersFormComponent>) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -21,15 +22,14 @@ export class UpdateShippersFormComponent implements OnInit {
   initForm() {
 
     this.formShipper = this.formBuilder.group({
-
       telefono: new FormControl('', Validators.required),
       companyName: new FormControl('', Validators.required)
     })
   }
   editShipper(shipper: Shipper) {
-    this.formShipper.controls['id'].setValue(shipper.ShipperID);
-    this.formShipper.controls['companyName'].setValue(shipper.CompanyName);
-    this.formShipper.controls['telefono'].setValue(shipper.Phone);
+    this.formShipper.get('id')?.setValue(shipper.ShipperID);
+    this.formShipper.get('companyName')?.setValue(shipper.CompanyName);
+    this.formShipper.get('telefono')?.setValue(shipper.Phone);
   }
 
   cancelarForm() {
@@ -40,7 +40,7 @@ export class UpdateShippersFormComponent implements OnInit {
       next: res => {
         alert('Producto actualizado exitosamente');
         this.formShipper.reset();
-        //this.dialogRef.close();
+        this.dialogRef.close('update');
       },
       error: () => {
         alert("Ocurrio un error al intentar actualizar el shipper")

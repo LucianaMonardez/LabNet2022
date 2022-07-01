@@ -42,7 +42,7 @@ export class DialogComponent implements OnInit {
         next: (res) => {
           alert('Shipper creado exitosamente')
           this.formShipper.reset();
-          this.dialogRef.close();
+          this.dialogRef.close('save');
         },
         error: () => {
           alert("Error al intentar crear un shipper")
