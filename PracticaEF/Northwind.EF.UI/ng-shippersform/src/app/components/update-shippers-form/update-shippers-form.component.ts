@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Shipper } from 'src/app/models/shippers';
 import { ShippersService } from 'src/app/services/shippers.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-update-shippers-form',
@@ -11,8 +11,14 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class UpdateShippersFormComponent implements OnInit {
 
+  editData: any;
+  id = this.data;
+
+
   public formShipper = new FormGroup({})
-  constructor(private shipperService: ShippersService, private formBuilder: FormBuilder, public dialogRef: MatDialogRef<UpdateShippersFormComponent>) { }
+  constructor(private shipperService: ShippersService, private formBuilder: FormBuilder, public dialogRef: MatDialogRef<UpdateShippersFormComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+
 
   ngOnInit(): void {
     this.initForm();
@@ -21,22 +27,26 @@ export class UpdateShippersFormComponent implements OnInit {
 
   initForm() {
 
+    console.log(this.data);
     this.formShipper = this.formBuilder.group({
       telefono: new FormControl('', Validators.required),
       companyName: new FormControl('', Validators.required)
     })
   }
-  editShipper(shipper: Shipper) {
-    this.formShipper.get('id')?.setValue(shipper.ShipperID);
-    this.formShipper.get('companyName')?.setValue(shipper.CompanyName);
-    this.formShipper.get('telefono')?.setValue(shipper.Phone);
+  editShipper(id) {
+    this.shipperService.getShipperById(this.data).subscribe(res => {
+      this.editData = res;
+      this.formShipper.get('companyName')?.setValue({ companyName: this.editData.CompanyName });
+      this.formShipper.get('telefono')?.setValue({ phone: this.editData.phone });
+    })
   }
 
   cancelarForm() {
     this.formShipper.reset();
   }
-  guardarForm() {
-    this.shipperService.updateShipper(this.formShipper.value).subscribe({
+  guardarForm(id) {
+    this.editShipper(id);
+    this.shipperService.updateShipper(this.formShipper.getRawValue()).subscribe({
       next: res => {
         alert('Producto actualizado exitosamente');
         this.formShipper.reset();

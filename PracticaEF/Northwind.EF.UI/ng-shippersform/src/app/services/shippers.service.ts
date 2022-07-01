@@ -32,4 +32,8 @@ export class ShippersService {
     let url = environment.apiShippers + this.endpoint + '/' + id;
     return this.http.delete<Shipper>(url);
   }
+  public getShipperById(id: any) {
+    let url = environment.apiShippers + this.endpoint + '/' + id;
+    return this.http.get(url);
+  }
 }

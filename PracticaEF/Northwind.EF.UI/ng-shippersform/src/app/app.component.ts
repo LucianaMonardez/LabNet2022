@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router'
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogComponent } from './components/dialog/dialog.component';
@@ -13,8 +13,10 @@ import { UpdateShippersFormComponent } from '../app/components/update-shippers-f
 export class AppComponent {
   title = 'Shippers form';
 
+  @ViewChild(UpdateShippersFormComponent) addView !: UpdateShippersFormComponent;
+
   public shipperList: Array<Shipper> = [];
-  constructor(private router: Router, private dialog: MatDialog, private shipperService: ShippersService) { }
+  constructor(private router: Router, private dialog: MatDialog, private shipperService: ShippersService, public dialogRef: MatDialog) { }
 
   ngOnInit(): void {
     this.obtenerShippers();
@@ -32,10 +34,15 @@ export class AppComponent {
         this.obtenerShippers();
     })
   }
+
+
   openEditDialog(shipper: Shipper) {
     console.log(shipper);
-    this.dialog.open(UpdateShippersFormComponent, {
-      width: '30%'
+    let dialogRef = this.dialog.open(UpdateShippersFormComponent, {
+      width: '30%',
+      data: {
+        id: shipper.ShipperID,
+      }
     }).afterClosed().subscribe(val => {
       if (val === 'update')
         this.obtenerShippers();

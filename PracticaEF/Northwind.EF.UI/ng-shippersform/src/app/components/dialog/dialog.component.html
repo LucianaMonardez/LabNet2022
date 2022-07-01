@@ -1,25 +1,27 @@
-<h2>Agregar Shipper</h2>
-<form [formGroup]="formShipper">
-  <div class="input-container">
-    <label for="">Company Name</label>
-    <mat-form-field appearance="fill">
+<h2 mat-dialog-title>Agregar Shipper</h2>
+<div mat-dialog-content>
+  <form [formGroup]="formShipper">
+    <div class="input-container">
+      <label for="">Company Name</label>
+      <mat-form-field appearance="fill">
 
-      <mat-label>Company Name</mat-label>
+        <mat-label>Company Name</mat-label>
 
-      <input matInput class="form-control" formControlName="companyName">
-    </mat-form-field>
-    <label for="">Phone</label>
-    <mat-form-field appearance="fill">
+        <input matInput class="form-control" formControlName="companyName">
+      </mat-form-field>
+      <label for="">Phone</label>
+      <mat-form-field appearance="fill">
 
-      <mat-label>Phone</mat-label>
-      <input matInput class="form-control" formControlName="telefono">
-    </mat-form-field>
-  </div>
-  <div mat-dialog-action [align]="'end'">
-    <button (click)="guardarForm()" mat-raised-button color="primary">Guardar</button>
-    <button (click)="cancelarForm()" mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
-  </div>
-</form>
+        <mat-label>Phone</mat-label>
+        <input matInput class="form-control" formControlName="telefono">
+      </mat-form-field>
+    </div>
+    <div mat-dialog-action [align]="'end'">
+      <button (click)="guardarForm()" mat-raised-button color="primary">Guardar</button>
+      <button (click)="cancelarForm()" mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
+    </div>
+  </form>
+</div>
 <style>
   .input-container {
     display: flex;
