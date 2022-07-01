@@ -22,6 +22,7 @@ export class UpdateShippersFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+
   }
 
 
@@ -29,23 +30,23 @@ export class UpdateShippersFormComponent implements OnInit {
 
     console.log(this.data);
     this.formShipper = this.formBuilder.group({
-      telefono: new FormControl('', Validators.required),
+      id: new FormControl('', Validators.required),
+      phone: new FormControl('', Validators.required),
       companyName: new FormControl('', Validators.required)
     })
-  }
-  editShipper(id) {
-    this.shipperService.getShipperById(this.data).subscribe(res => {
-      this.editData = res;
-      this.formShipper.get('companyName')?.setValue({ companyName: this.editData.CompanyName });
-      this.formShipper.get('telefono')?.setValue({ phone: this.editData.phone });
-    })
+    if (this.data) {
+      console.log("entro al if");
+      console.log(this.id);
+      this.formShipper.get('id')?.setValue(this.data.id);
+      this.formShipper.get('companyName')?.setValue(this.data.companyName);
+      this.formShipper.get('phone')?.setValue(this.data.phone);
+    }
   }
 
   cancelarForm() {
     this.formShipper.reset();
   }
   guardarForm(id) {
-    this.editShipper(id);
     this.shipperService.updateShipper(this.formShipper.getRawValue()).subscribe({
       next: res => {
         alert('Producto actualizado exitosamente');

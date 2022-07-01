@@ -3,7 +3,8 @@
   <form [formGroup]="formShipper">
     <div class="input-container">
 
-      <input matInput class="form-control" value="shippers.ShipperID" formControlName="id" style="display: none;">
+      <input class="form-control" formControlName="id" value='{{data.id}}' style="display: none">
+
       <label for="">Company Name</label>
       <mat-form-field appearance="fill">
 
@@ -15,7 +16,7 @@
       <mat-form-field appearance="fill">
 
         <mat-label>Phone</mat-label>
-        <input matInput class="form-control" formControlName="telefono">
+        <input matInput class="form-control" formControlName="phone">
       </mat-form-field>
     </div>
     <div mat-dialog-action [align]="'end'">

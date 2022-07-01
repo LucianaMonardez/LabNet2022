@@ -42,6 +42,8 @@ export class AppComponent {
       width: '30%',
       data: {
         id: shipper.ShipperID,
+        companyName: shipper.CompanyName,
+        phone: shipper.Phone,
       }
     }).afterClosed().subscribe(val => {
       if (val === 'update')
